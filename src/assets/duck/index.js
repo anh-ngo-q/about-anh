@@ -1,0 +1,10 @@
+export { default as BaseDuck } from "./BaseDuck";
+export { default as HeadphonesDuck } from "./HeadphonesDuck";
+export { default as HardHatDuck } from "./HardHatDuck";
+export { default as ScarfDuck } from "./ScarfDuck";
+export { default as WrenchDuck } from "./WrenchDuck";
+export { default as ProfessorDuck } from "./ProfessorDuck";
+export { default as BeretDuck } from "./BeretDuck";
+export { default as EnvelopeDuck } from "./EnvelopeDuck";
+export { default as ToastDuck } from "./ToastDuck";
+export { default as WobbleDuck } from "./WobbleDuck";
