@@ -1,11 +1,14 @@
-# React + Vite
+# Anh's Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to my personal portfolio website! 🦆
 
-Currently, two official plugins are available:
+## About Me
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+I'm Anh — a Computer Science student at Rose-Hulman Institute of Technology. I'm passionate about building AI experiences and currently interning at Toast, working on ToastIQ, a multi-agent AI assistant. When I'm not coding, you'll find me playing violin, crocheting plushies, learning German, or exploring new restaurants for my Beli food blog.
+
+## Project Overview
+
+This is my personal portfolio showcasing my experience, projects, and skills. Built with **React** and **Vite**, it features smooth animations with Framer Motion and a collection of adorable custom duck components (because debugging with rubber ducks is the best way to debug). The site highlights my internships, technical skills, and passion for software engineering and AI.
 
 ## React Compiler
 
