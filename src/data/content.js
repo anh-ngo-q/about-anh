@@ -10,7 +10,7 @@ const content = {
       "ToastIQ 🍞 multi-agent AI assistant",
       "Snowflake ❄️ distributed storage",
       "my Beli profile",
-      "100K+ restaurant locations",
+      // "100K+ restaurant locations",
     ],
     statusBadges: [
       "open to 2027 intern and new grad roles",

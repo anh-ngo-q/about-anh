@@ -54,7 +54,7 @@ export default function Hero() {
         </h1>
 
         {/* Tagline */}
-        <p className="text-lg md:text-xl text-text-secondary mb-8 max-w-lg mx-auto">
+        <p className="text-lg md:text-xl text-text-secondary mb-8 max-w-lg mx-auto" style={{ whiteSpace: 'pre-line' }}>
           {content.hero.tagline}
         </p>
 

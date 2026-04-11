@@ -5,13 +5,24 @@ export default function EasterEggTerminal({ show, onClose }) {
   const [input, setInput] = useState("");
   const [lines, setLines] = useState([{ text: "duck-debug v1.0.0", type: "system" }]);
   const [isTyping, setIsTyping] = useState(false);
+  const [showDog, setShowDog] = useState(false);
   const inputRef = useRef(null);
+  const outputRef = useRef(null);
 
   useEffect(() => {
     if (show && inputRef.current) {
       inputRef.current.focus();
     }
+    if (!show) {
+      setShowDog(false);
+    }
   }, [show]);
+
+  useEffect(() => {
+    if (outputRef.current) {
+      outputRef.current.scrollTop = outputRef.current.scrollHeight;
+    }
+  }, [lines, showDog]);
 
   useEffect(() => {
     const handleEsc = (e) => {
@@ -21,6 +32,24 @@ export default function EasterEggTerminal({ show, onClose }) {
     return () => window.removeEventListener("keydown", handleEsc);
   }, [onClose]);
 
+  const typeResponse = (response, type = "response") => {
+    setIsTyping(true);
+    let i = 0;
+    setLines((prev) => [...prev, { text: "", type }]);
+    const interval = setInterval(() => {
+      i++;
+      setLines((prev) => {
+        const updated = [...prev];
+        updated[updated.length - 1] = { text: response.slice(0, i), type };
+        return updated;
+      });
+      if (i >= response.length) {
+        clearInterval(interval);
+        setIsTyping(false);
+      }
+    }, 50);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const cmd = input.trim().toLowerCase();
@@ -28,26 +57,11 @@ export default function EasterEggTerminal({ show, onClose }) {
     setInput("");
 
     if (cmd === "quack") {
-      setIsTyping(true);
-      const response = "have you tried turning it off and on again?";
-      let i = 0;
-      setLines((prev) => [...prev, { text: "", type: "response" }]);
-
-      const interval = setInterval(() => {
-        i++;
-        setLines((prev) => {
-          const updated = [...prev];
-          updated[updated.length - 1] = {
-            text: response.slice(0, i),
-            type: "response",
-          };
-          return updated;
-        });
-        if (i >= response.length) {
-          clearInterval(interval);
-          setIsTyping(false);
-        }
-      }, 50);
+      typeResponse("have you tried turning it off and on again?");
+    } else if (cmd === "woof") {
+      setShowDog(false);
+      setLines((prev) => [...prev, { text: "wait... that's not a duck", type: "response" }]);
+      setTimeout(() => setShowDog(true), 600);
     } else if (cmd === "help") {
       setLines((prev) => [
         ...prev,
@@ -96,7 +110,7 @@ export default function EasterEggTerminal({ show, onClose }) {
             </div>
 
             {/* Output */}
-            <div className="space-y-1 mb-3 max-h-48 overflow-y-auto">
+            <div ref={outputRef} className="space-y-1 mb-3 max-h-64 overflow-y-auto">
               {lines.map((line, i) => (
                 <div
                   key={i}
@@ -111,6 +125,25 @@ export default function EasterEggTerminal({ show, onClose }) {
                   {line.text}
                 </div>
               ))}
+
+              {/* Dog GIF easter egg */}
+              <AnimatePresence>
+                {showDog && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.7 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.7 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className="mt-2"
+                  >
+                    <img
+                      src="/about-anh/egg_hatch_dog.gif"
+                      alt="egg hatching dog"
+                      className="rounded-xl max-w-[200px]"
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             {/* Input */}
