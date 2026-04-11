@@ -39,6 +39,7 @@ export default function Contact() {
 
       <motion.p
         className="text-text-secondary mb-10 text-base"
+        style={{ whiteSpace: 'pre-line' }}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}

@@ -5,15 +5,15 @@ const content = {
 
   hero: {
     name: "Anh Ngo",
-    tagline: "I debug with a rubber duck. it works.",
+    tagline: "I like debugging with a rubber duck. \nSometimes more than one.",
     phrases: [
-      "multi-agent AI assistants",
-      "petabyte-scale distributed storage",
-      "LLM memory management",
+      "ToastIQ 🍞 multi-agent AI assistant",
+      "Snowflake ❄️ distributed storage",
+      "my Beli profile",
       "100K+ restaurant locations",
     ],
     statusBadges: [
-      "open to new grad roles",
+      "open to 2027 intern and new grad roles",
       "building cool things",
       "quacking bugs away",
     ],
@@ -75,14 +75,14 @@ const content = {
         metrics: "40% faster downloads via multithreaded architecture with Java concurrency utilities and thread pools",
         link: null,
       },
-      {
-        title: "Feline Genotype Inference Engine",
-        description:
-          "A probabilistic inference engine modeling 5 interacting loci as a factor graph with latent variables, dominance, epistasis, and X-linkage, marginalizing over hidden genotypes using allele frequency priors and Monte Carlo simulation.",
-        tech: ["Python", "NumPy", "SciPy", "Streamlit", "Bayesian Inference"],
-        metrics: "Calibrated via EM algorithm on 1,000+ pedigree records, validated with chi-squared tests (p > 0.05)",
-        link: null,
-      },
+      // {
+      //   title: "Feline Genotype Inference Engine",
+      //   description:
+      //     "A probabilistic inference engine modeling 5 interacting loci as a factor graph with latent variables, dominance, epistasis, and X-linkage, marginalizing over hidden genotypes using allele frequency priors and Monte Carlo simulation.",
+      //   tech: ["Python", "NumPy", "SciPy", "Streamlit", "Bayesian Inference"],
+      //   metrics: "Calibrated via EM algorithm on 1,000+ pedigree records, validated with chi-squared tests (p > 0.05)",
+      //   link: null,
+      // },
     ],
   },
 
@@ -152,7 +152,7 @@ const content = {
   },
 
   about: {
-    bio: "I'm Anh — a CS student at Rose-Hulman Institute of Technology (GPA: 3.93) building AI agent infrastructure and figuring out how to make machines remember things (and forget the right things). When I'm not staring at a terminal, you'll find me playing violin, crocheting something cozy, brushing up on my German, or missing Vietnam's street food. I also play League of Legends — support main, because someone has to keep the team alive. Originally from Vietnam, currently debugging my way through Indiana.",
+    bio: "I'm Anh — a Computer Science student at Rose-Hulman Institute of Technology!\nCurrently building AI experiences at Toast while learning German on the side (because why not add another challenge?).\nBeyond the keyboard: You'll find me playing violin, crocheting new patterns and plushies, or posting restaurant reviews on Beli! Trying really hard to reach 100 new restaurants for 2026 :P\nI'm always excited to chat about tech, music, yarn crafts, language learning, or whatever fascinating project you're working on!",
   },
 
   contact: {
@@ -160,7 +160,7 @@ const content = {
     linkedin: "https://linkedin.com/in/anh-ngo-q",
     github: "https://github.com/anh-ngo-q",
     inviteLine:
-      "Got a cool project, a job opening, or just want to talk about ducks? Let's connect!",
+      "Got a cool project, a job opening, or just want to talk about ducks? \n Yarn? German? Celsius vs. Monster? Let's connect!",
   },
 };
 

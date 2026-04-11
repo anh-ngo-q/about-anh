@@ -15,7 +15,7 @@ export default function Navbar() {
           duration={500}
           className="text-accent-yellow font-bold text-xl cursor-pointer"
         >
-          🦆 anh.dev
+          🦆 Anh Ngo 🦆
         </Link>
 
         {/* Desktop nav */}

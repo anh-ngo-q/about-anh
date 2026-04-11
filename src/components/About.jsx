@@ -24,15 +24,15 @@ export default function About() {
       >
         <div className="flex-1">
           <div className="bg-bg-card rounded-3xl p-8">
-            <p className="text-text-secondary leading-relaxed text-base">
+            <p className="text-text-secondary leading-relaxed text-base" style={{ whiteSpace: 'pre-line' }}>
               {content.about.bio}
             </p>
           </div>
         </div>
 
-        <WobbleDuck className="shrink-0">
-          <BeretDuck size={120} />
-        </WobbleDuck>
+        <div className="shrink-0 rounded-full overflow-hidden w-30 h-30">
+          <img src="public/rubber-duck-with-sunglasses.jpg" alt="Rubber duck with sunglasses" className="w-full h-full object-cover" />
+        </div>
       </motion.div>
     </section>
   );

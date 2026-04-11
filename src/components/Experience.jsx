@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import content from "../data/content";
-import { ScarfDuck, HardHatDuck, ToastDuck, WobbleDuck } from "../assets/duck";
+import { ScarfDuck, HardHatDuck, ToastDuck, WobbleDuck, HeadphonesDuck } from "../assets/duck";
 
 const cardVariants = {
   hidden: { opacity: 0, x: -30 },
@@ -50,7 +50,7 @@ function DuckForEntry({ company, tag }) {
   if (company === "TAPTAP") {
     return (
       <WobbleDuck className="absolute -right-2 -top-2 opacity-80 hidden md:block">
-        <HardHatDuck size={50} />
+        <HeadphonesDuck size={50} />
       </WobbleDuck>
     );
   }
