@@ -20,14 +20,13 @@ export default function ScarfDuck({ size = 120, className = "" }) {
       {/* Pompom */}
       <circle cx="55" cy="8" r="5" fill="#a8e6cf" />
       <circle cx="53" cy="7" r="2" fill="#c4f0dd" />
-      {/* Scarf around neck */}
-      <path
-        d="M35 58 Q55 52 75 58 Q78 62 75 66 Q55 60 35 66 Q32 62 35 58"
-        fill="#a8e6cf"
-      />
-      {/* Scarf tail */}
-      <path d="M70 62 L78 80 Q80 82 76 82 L68 66" fill="#a8e6cf" />
-      <path d="M72 70 L77 78" stroke="#8fd4b8" strokeWidth="1.5" fill="none" />
+      {/* Scarf */}
+<path d="M31 53.5 Q31 50 35 50 Q52 59 71 50 Q75 50 75 53.5 Q75 57 71 57 Q52 68 35 57 Q31 57 31 53.5 Z" fill="#a8e6cf" />
+<path d="M33 55 Q52 64 72 55" stroke="#8fd4b8" strokeWidth="1.2" fill="none" strokeLinecap="round" />
+
+{/* Tail */}
+<path d="M67 55 Q70 66 68 80 Q67 85 62 85 Q57 85 58 80 Q60 68 63 56Z" fill="#a8e6cf" />
+<path d="M65 61 Q66 72 64 81" stroke="#8fd4b8" strokeWidth="1.2" fill="none" strokeLinecap="round" />
     </BaseDuck>
   );
 }
