@@ -134,12 +134,12 @@ export default function EasterEggTerminal({ show, onClose }) {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.7 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="mt-2"
+                    className="mt-2 flex justify-center items-center"
                   >
                     <img
                       src="/about-anh/egg_hatch_dog.gif"
                       alt="egg hatching dog"
-                      className="rounded-xl max-w-[200px]"
+                      className="rounded-xl max-w-[200px] mx-auto"
                     />
                   </motion.div>
                 )}
