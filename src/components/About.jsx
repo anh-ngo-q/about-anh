@@ -31,7 +31,7 @@ export default function About() {
         </div>
 
         <div className="shrink-0 rounded-full overflow-hidden w-30 h-30">
-          <img src="public/rubber-duck-with-sunglasses.jpg" alt="Rubber duck with sunglasses" className="w-full h-full object-cover" />
+          <img src="/rubber-duck-with-sunglasses.jpg" alt="Rubber duck with sunglasses" className="w-full h-full object-cover" />
         </div>
       </motion.div>
     </section>
