@@ -2,6 +2,7 @@
 
 @theme {
   --font-nunito: 'Nunito', sans-serif;
+  --font-lora: 'Lora', Georgia, serif;
 
   --color-bg: #1a1a2e;
   --color-bg-card: #22223a;

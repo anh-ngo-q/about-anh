@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { FaFolder } from "react-icons/fa";
+import { lsFolders } from "../data/thoughts";
 
-export default function EasterEggTerminal({ show, onClose }) {
+export default function EasterEggTerminal({ show, onClose, navigate }) {
   const [input, setInput] = useState("");
   const [lines, setLines] = useState([{ text: "duck-debug v1.0.0", type: "system" }]);
   const [isTyping, setIsTyping] = useState(false);
@@ -48,6 +50,7 @@ export default function EasterEggTerminal({ show, onClose }) {
         setIsTyping(false);
       }
     }, 50);
+    return response.length * 50;
   };
 
   const handleSubmit = (e) => {
@@ -62,17 +65,40 @@ export default function EasterEggTerminal({ show, onClose }) {
       setShowDog(false);
       setLines((prev) => [...prev, { text: "wait... that's not a duck", type: "response" }]);
       setTimeout(() => setShowDog(true), 600);
+    } else if (cmd === "ls") {
+      setLines((prev) => [
+        ...prev,
+        {
+          type: "ls-output",
+          folders: lsFolders.map((f) => ({ ...f, name: f.name + "/" })),
+        },
+      ]);
+    } else if (cmd.startsWith("cd ")) {
+      const target = cmd.slice(3).trim().replace(/\/$/, "");
+      const folder = lsFolders.find((f) => f.name === target);
+      if (folder) {
+        const duration = typeResponse(`entering ${folder.name}/...`);
+        setTimeout(() => {
+          onClose();
+          navigate(folder.path);
+        }, duration + 200);
+      } else {
+        setLines((prev) => [
+          ...prev,
+          { text: `cd: ${target}: no such directory`, type: "system" },
+        ]);
+      }
     } else if (cmd === "help") {
       setLines((prev) => [
         ...prev,
-        { text: "available commands: quack, help, exit", type: "system" },
+        { text: "available commands: quack, ls, cd <folder>, help, exit", type: "system" },
       ]);
     } else if (cmd === "exit") {
       onClose();
     } else {
       setLines((prev) => [
         ...prev,
-        { text: `command not found: ${cmd}. try 'quack'`, type: "system" },
+        { text: `command not found: ${cmd}. try 'help'`, type: "system" },
       ]);
     }
   };
@@ -111,20 +137,34 @@ export default function EasterEggTerminal({ show, onClose }) {
 
             {/* Output */}
             <div ref={outputRef} className="space-y-1 mb-3 max-h-64 overflow-y-auto">
-              {lines.map((line, i) => (
-                <div
-                  key={i}
-                  className={
-                    line.type === "input"
-                      ? "text-accent-yellow"
-                      : line.type === "response"
-                        ? "text-accent-mint"
-                        : "text-text-muted"
-                  }
-                >
-                  {line.text}
-                </div>
-              ))}
+              {lines.map((line, i) => {
+                if (line.type === "ls-output") {
+                  return (
+                    <div key={i} className="space-y-1 py-1">
+                      {line.folders.map((f) => (
+                        <div key={f.name} className="flex items-center gap-2 text-accent-mint">
+                          <FaFolder className="text-accent-yellow shrink-0" style={{ fontSize: "1.1rem" }} />
+                          <span>{f.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                }
+                return (
+                  <div
+                    key={i}
+                    className={
+                      line.type === "input"
+                        ? "text-accent-yellow"
+                        : line.type === "response"
+                          ? "text-accent-mint"
+                          : "text-text-muted"
+                    }
+                  >
+                    {line.text}
+                  </div>
+                );
+              })}
 
               {/* Dog GIF easter egg */}
               <AnimatePresence>
@@ -156,7 +196,7 @@ export default function EasterEggTerminal({ show, onClose }) {
                 onChange={(e) => setInput(e.target.value)}
                 disabled={isTyping}
                 className="flex-1 bg-transparent text-text-primary outline-none caret-accent-yellow"
-                placeholder="type 'quack'..."
+                placeholder="type 'help'..."
                 autoComplete="off"
               />
             </form>

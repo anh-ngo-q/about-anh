@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import content from "../data/content";
 import useTypewriter from "../hooks/useTypewriter";
@@ -6,6 +7,7 @@ import { BaseDuck, WobbleDuck } from "../assets/duck";
 import EasterEggTerminal from "./EasterEggTerminal";
 
 export default function Hero() {
+  const navigate = useNavigate();
   const { displayText } = useTypewriter(content.hero.phrases);
   const [badgeIndex, setBadgeIndex] = useState(0);
   const [showTerminal, setShowTerminal] = useState(false);
@@ -69,6 +71,7 @@ export default function Hero() {
       <EasterEggTerminal
         show={showTerminal}
         onClose={() => setShowTerminal(false)}
+        navigate={navigate}
       />
     </section>
   );
