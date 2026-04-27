@@ -17,6 +17,15 @@ export const posts = [
     status: "published",
     createdAt: "2026-04-11T00:00:00Z",
   },
+  {
+    id: "love-and-cigarettes",
+    title: "Why is love similar to a cigarette?",
+    topic: "Personal",
+    content:
+      "\"Because love can burn like a cigarette, and leave you alone with nothing.\"\n\nBut I'll never touch a cigarette.",
+    status: "published",
+    createdAt: "2026-04-26T03:53:00Z",
+  }
 ];
 
 // Returns published posts grouped by topic, newest first within each group.
