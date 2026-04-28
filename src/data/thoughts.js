@@ -5,8 +5,8 @@ export const lsFolders = [
 ];
 
 // Blog posts. Add entries here to publish new posts.
-// status: "published" | "draft"
-// Draft posts are never shown on the page.
+// status: "published" | "draft"  — draft posts are never shown on the page.
+// music: optional Spotify track URL, e.g. "https://open.spotify.com/track/TRACKID"
 export const posts = [
   {
     id: "hello-world",
@@ -20,9 +20,10 @@ export const posts = [
   {
     id: "love-and-cigarettes",
     title: "Why is love similar to a cigarette?",
-    topic: "Personal",
+    topic: "Music",
     content:
       "\"Because love can burn like a cigarette, and leave you alone with nothing.\"\n\nBut I'll never touch a cigarette.",
+    music: {url: "https://open.spotify.com/track/6dBUzqjtbnIa1TwYbyw5CM", start: 50},
     status: "published",
     createdAt: "2026-04-26T03:53:00Z",
   }

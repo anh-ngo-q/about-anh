@@ -123,10 +123,35 @@ function PostCard({ post }) {
       {/* Content */}
       <p
         style={{ color: "#5c3d2e", lineHeight: "1.85" }}
-        className="text-sm whitespace-pre-line"
+        className="text-sm whitespace-pre-line mb-4"
       >
         {post.content}
       </p>
+
+      {/* Spotify player */}
+      {post.music && <SpotifyPlayer music={post.music} />}
     </article>
+  );
+}
+
+function SpotifyPlayer({ music }) {
+  // music can be a string URL or { url, start } where start is seconds
+  const url = typeof music === "string" ? music : music.url;
+  const start = typeof music === "object" && music.start ? `&start=${music.start}` : "";
+
+  const match = url.match(/spotify\.com\/track\/([a-zA-Z0-9]+)/);
+  if (!match) return null;
+  const embedUrl = `https://open.spotify.com/embed/track/${match[1]}?utm_source=generator${start}`;
+
+  return (
+    <iframe
+      src={embedUrl}
+      width="100%"
+      height="80"
+      frameBorder="0"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy"
+      style={{ borderRadius: "8px", marginTop: "4px" }}
+    />
   );
 }
