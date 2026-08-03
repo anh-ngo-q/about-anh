@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import content from "../data/content";
-import { ScarfDuck, HardHatDuck, ToastDuck, WobbleDuck, HeadphonesDuck } from "../assets/duck";
+import { ScarfDuck, HardHatDuck, ToastDuck, WobbleDuck, HeadphonesDuck, ProfessorDuck } from "../assets/duck";
 
 const cardVariants = {
   hidden: { opacity: 0, x: -30 },
@@ -19,10 +19,10 @@ const cardVariants = {
 function TagBadge({ tag }) {
   if (!tag) return null;
   const styles = {
-    incoming: "bg-accent-mint/15 text-accent-mint border-accent-mint/30",
+    current: "bg-accent-mint/15 text-accent-mint border-accent-mint/30",
     rehire: "bg-accent-peach/15 text-accent-peach border-accent-peach/30",
   };
-  const labels = { incoming: "incoming", rehire: "rehired ✨" };
+  const labels = { current: "current", rehire: "rehired ✨" };
   return (
     <span
       className={`text-xs font-bold px-3 py-1 rounded-full border ${styles[tag] || ""}`}
@@ -32,8 +32,8 @@ function TagBadge({ tag }) {
   );
 }
 
-function DuckForEntry({ company, tag }) {
-  if (tag === "incoming") {
+function DuckForEntry({ company }) {
+  if (company === "Snowflake") {
     return (
       <WobbleDuck className="absolute -right-2 -top-2 opacity-80 hidden md:block">
         <ScarfDuck size={50} />
@@ -51,6 +51,13 @@ function DuckForEntry({ company, tag }) {
     return (
       <WobbleDuck className="absolute -right-2 -top-2 opacity-80 hidden md:block">
         <HeadphonesDuck size={50} />
+      </WobbleDuck>
+    );
+  }
+  if (company === "Rose-Hulman") {
+    return (
+      <WobbleDuck className="absolute -right-2 -top-2 opacity-80 hidden md:block">
+        <ProfessorDuck size={50} />
       </WobbleDuck>
     );
   }
@@ -101,7 +108,7 @@ export default function Experience() {
 
                 {/* Card */}
                 <div className="relative bg-bg-card rounded-3xl p-6 hover:bg-bg-card-hover transition-colors">
-                  <DuckForEntry company={entry.company} tag={entry.tag} />
+                  <DuckForEntry company={entry.company} />
 
                   <div className="flex flex-wrap items-center gap-3 mb-2">
                     <h3 className="text-lg font-bold text-text-primary">

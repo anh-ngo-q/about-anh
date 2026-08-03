@@ -4,7 +4,7 @@ Welcome to my personal portfolio website! 🦆
 
 ## About Me
 
-I'm Anh — a Computer Science student at Rose-Hulman Institute of Technology. I'm passionate about building AI experiences and currently interning at Toast, working on ToastIQ, a multi-agent AI assistant. When I'm not coding, you'll find me playing violin, crocheting plushies, learning German, or exploring new restaurants for my Beli food blog.
+I'm Anh — a Computer Science student at Rose-Hulman Institute of Technology. I'm passionate about building AI experiences and currently interning at Snowflake, working on petabyte-scale storage infrastructure. When I'm not coding, you'll find me playing violin, crocheting plushies, learning German, or exploring new restaurants for my Beli food blog.
 
 ## Project Overview
 
