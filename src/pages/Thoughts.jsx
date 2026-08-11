@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getGroupedPosts } from "../data/thoughts";
 
@@ -13,8 +13,19 @@ const PAPER = {
 
 export default function Thoughts() {
   const navigate = useNavigate();
-  const grouped = getGroupedPosts();
+  const grouped = useMemo(() => getGroupedPosts(), []);
   const topics = Object.keys(grouped);
+
+  const [activeTopic, setActiveTopic] = useState(topics[0] ?? null);
+  const [activePostId, setActivePostId] = useState(topics[0] ? grouped[topics[0]][0]?.id : null);
+
+  const activePosts = activeTopic ? grouped[activeTopic] : [];
+  const activePost = activePosts.find((p) => p.id === activePostId) ?? activePosts[0] ?? null;
+
+  function selectTopic(topic) {
+    setActiveTopic(topic);
+    setActivePostId(grouped[topic][0]?.id ?? null);
+  }
 
   // Override body background to match the paper theme; restore on unmount.
   useEffect(() => {
@@ -46,7 +57,7 @@ export default function Thoughts() {
       </header>
 
       {/* Content */}
-      <main className="max-w-2xl mx-auto px-6 py-12">
+      <main className="max-w-4xl mx-auto px-6 py-12">
         {topics.length === 0 ? (
           <p
             style={{ color: PAPER.muted, fontFamily: "var(--font-lora)" }}
@@ -55,30 +66,88 @@ export default function Thoughts() {
             nothing here yet...
           </p>
         ) : (
-          topics.map((topic) => (
-            <section key={topic} className="mb-14">
-              {/* Topic heading */}
-              <h2
-                style={{
-                  color: PAPER.muted,
-                  borderBottom: `1px solid ${PAPER.divider}`,
-                  fontFamily: "var(--font-nunito)",
-                }}
-                className="text-xs uppercase tracking-widest font-bold pb-2 mb-8"
-              >
-                {topic}
-              </h2>
+          <>
+            {/* Topic tabs */}
+            <div
+              style={{ borderBottom: `1px solid ${PAPER.divider}`, fontFamily: "var(--font-nunito)" }}
+              className="flex gap-2 overflow-x-auto mb-10"
+            >
+              {topics.map((topic) => {
+                const isActive = topic === activeTopic;
+                return (
+                  <button
+                    key={topic}
+                    onClick={() => selectTopic(topic)}
+                    style={{
+                      color: isActive ? PAPER.text : PAPER.faint,
+                      borderBottom: isActive ? `2px solid ${PAPER.text}` : "2px solid transparent",
+                    }}
+                    className="text-xs uppercase tracking-widest font-bold pb-3 px-1 whitespace-nowrap transition-colors hover:opacity-80"
+                  >
+                    {topic}
+                  </button>
+                );
+              })}
+            </div>
 
-              <div className="space-y-10">
-                {grouped[topic].map((post) => (
-                  <PostCard key={post.id} post={post} />
+            {/* List + detail */}
+            <div className="flex flex-col md:flex-row gap-10">
+              {/* Post list (left) */}
+              <nav className="md:w-56 shrink-0 flex flex-row md:flex-col gap-2 overflow-x-auto md:overflow-visible">
+                {activePosts.map((post) => (
+                  <PostListItem
+                    key={post.id}
+                    post={post}
+                    isActive={post.id === activePost?.id}
+                    onClick={() => setActivePostId(post.id)}
+                  />
                 ))}
+              </nav>
+
+              {/* Post detail (right) */}
+              <div className="flex-1 min-w-0">
+                {activePost ? (
+                  <PostCard post={activePost} />
+                ) : (
+                  <p style={{ color: PAPER.muted }} className="italic text-sm">
+                    select a post
+                  </p>
+                )}
               </div>
-            </section>
-          ))
+            </div>
+          </>
         )}
       </main>
     </div>
+  );
+}
+
+function PostListItem({ post, isActive, onClick }) {
+  const date = new Date(post.createdAt).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        backgroundColor: isActive ? PAPER.badgeBg : "transparent",
+        borderLeft: isActive ? `3px solid ${PAPER.text}` : "3px solid transparent",
+      }}
+      className="text-left shrink-0 md:shrink px-3 py-2 rounded-md transition-colors hover:opacity-80 w-56 md:w-full"
+    >
+      <p
+        style={{ color: isActive ? PAPER.text : "#5c3d2e" }}
+        className="text-sm font-semibold leading-snug truncate"
+      >
+        {post.title}
+      </p>
+      <p style={{ color: PAPER.faint, fontFamily: "var(--font-nunito)" }} className="text-xs mt-0.5">
+        {date}
+      </p>
+    </button>
   );
 }
 
