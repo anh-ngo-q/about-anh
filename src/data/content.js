@@ -8,7 +8,7 @@ const content = {
     tagline: "I like debugging with a rubber duck. \nSometimes more than one.",
     phrases: [
       "Snowflake ❄️ Storage Platform team",
-      "ToastIQ 🍞 multi-agent AI assistant",
+      "ToastIQ 🍞 multi-agent AI assistant (previously)",
       "my Beli profile",
       // "100K+ restaurant locations",
     ],
