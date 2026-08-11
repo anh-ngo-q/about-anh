@@ -199,6 +199,16 @@ function PostCard({ post }) {
 
       {/* Spotify player */}
       {post.music && <SpotifyPlayer music={post.music} />}
+
+      {/* Cover image */}
+      {post.cover && (
+        <img
+          src={post.cover}
+          alt={`${post.title} cover`}
+          style={{ border: `1px solid ${PAPER.divider}` }}
+          className="mt-4 max-w-[200px] rounded-md shadow-sm"
+        />
+      )}
     </article>
   );
 }
