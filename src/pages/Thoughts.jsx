@@ -246,10 +246,17 @@ function SpotifyPlayer({ music }) {
     let controller;
     let cancelled = false;
 
+    // createController replaces the element it is given with the iframe, so
+    // hand it a throwaway child — handing it the React-rendered node instead
+    // detaches it, and no player renders after switching posts.
+    const target = document.createElement("div");
+    const host = hostRef.current;
+    host.appendChild(target);
+
     loadSpotifyIframeApi().then((IFrameAPI) => {
-      if (cancelled || !hostRef.current) return;
+      if (cancelled) return;
       IFrameAPI.createController(
-        hostRef.current,
+        target,
         { uri: `spotify:track:${trackId}`, width: "100%", height: 80, startAt: start },
         (c) => {
           controller = c;
@@ -261,6 +268,7 @@ function SpotifyPlayer({ music }) {
     return () => {
       cancelled = true;
       if (controller) controller.destroy();
+      host.replaceChildren();
     };
   }, [trackId, start]);
 
