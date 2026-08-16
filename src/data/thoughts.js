@@ -38,6 +38,16 @@ export const posts = [
     cover: fahrenheit451Cover,
     status: "published",
     createdAt: "2026-08-11T00:00:00Z",
+  },
+  {
+    id: "cuon-tron-trong-chan",
+    title: "Cuộn tròn trong chăn",
+    topic: "Music",
+    content:
+      "The Marías - Heavy.\n\nSome nights the only plan is to disappear under the blanket and let the bridge of this song loop for a while. It's the kind of heavy that doesn't want fixing, just company — something to sit with instead of sleep through.",
+    music: { url: "https://open.spotify.com/track/1ShRHPAiiIrh0arZbSFmx1", start: 100 },
+    status: "published",
+    createdAt: "2026-08-15T00:00:00Z",
   }
 ];
 
