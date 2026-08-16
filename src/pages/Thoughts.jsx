@@ -140,7 +140,7 @@ function PostListItem({ post, isActive, onClick }) {
     >
       <p
         style={{ color: isActive ? PAPER.text : "#5c3d2e" }}
-        className="text-sm font-semibold leading-snug truncate"
+        className="text-sm font-semibold leading-snug break-words"
       >
         {post.title}
       </p>
