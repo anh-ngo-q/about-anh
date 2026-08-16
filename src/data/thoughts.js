@@ -45,7 +45,7 @@ export const posts = [
     topic: "Music",
     content:
       "During busy winter days, sometimes I just wish I could curl up under the comforter, forget about the outside world, and roll like a burrito 🌯",
-    music: { url: "https://open.spotify.com/track/1ShRHPAiiIrh0arZbSFmx1", start: 85 },
+    music: { url: "https://open.spotify.com/track/1ShRHPAiiIrh0arZbSFmx1", start: 121 },
     status: "published",
     createdAt: "2026-08-15T00:00:00Z",
   }

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getGroupedPosts } from "../data/thoughts";
 
@@ -213,24 +213,55 @@ function PostCard({ post }) {
   );
 }
 
+// Loads Spotify's iFrame API once and resolves with the shared IFrameAPI object.
+let iframeApiPromise = null;
+function loadSpotifyIframeApi() {
+  if (iframeApiPromise) return iframeApiPromise;
+  iframeApiPromise = new Promise((resolve) => {
+    window.onSpotifyIframeApiReady = resolve;
+    const script = document.createElement("script");
+    script.src = "https://open.spotify.com/embed/iframe-api/v1";
+    script.async = true;
+    document.body.appendChild(script);
+  });
+  return iframeApiPromise;
+}
+
 function SpotifyPlayer({ music }) {
   // music can be a string URL or { url, start } where start is seconds
   const url = typeof music === "string" ? music : music.url;
-  const start = typeof music === "object" && music.start ? `&start=${music.start}` : "";
-
+  const start = typeof music === "object" && music.start ? music.start : 0;
   const match = url.match(/spotify\.com\/track\/([a-zA-Z0-9]+)/);
-  if (!match) return null;
-  const embedUrl = `https://open.spotify.com/embed/track/${match[1]}?utm_source=generator${start}`;
+  const trackId = match ? match[1] : null;
 
-  return (
-    <iframe
-      src={embedUrl}
-      width="100%"
-      height="80"
-      frameBorder="0"
-      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-      loading="lazy"
-      style={{ borderRadius: "8px", marginTop: "4px" }}
-    />
-  );
+  const hostRef = useRef(null);
+
+  // The embed iframe ignores start-time URL params, so the iFrame API's
+  // startAt option is the only way to open the player at a given timestamp.
+  useEffect(() => {
+    if (!trackId) return;
+    let controller;
+    let cancelled = false;
+
+    loadSpotifyIframeApi().then((IFrameAPI) => {
+      if (cancelled || !hostRef.current) return;
+      IFrameAPI.createController(
+        hostRef.current,
+        { uri: `spotify:track:${trackId}`, width: "100%", height: 80, startAt: start },
+        (c) => {
+          controller = c;
+          if (cancelled) c.destroy();
+        }
+      );
+    });
+
+    return () => {
+      cancelled = true;
+      if (controller) controller.destroy();
+    };
+  }, [trackId, start]);
+
+  if (!trackId) return null;
+
+  return <div style={{ marginTop: "4px" }} ref={hostRef} />;
 }
