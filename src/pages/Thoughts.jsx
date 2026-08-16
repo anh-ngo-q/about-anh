@@ -200,13 +200,16 @@ function PostCard({ post }) {
       {/* Spotify player */}
       {post.music && <SpotifyPlayer music={post.music} />}
 
-      {/* Cover image */}
+      {/* Cover image — coverWidth (px) overrides the default for wider photos */}
       {post.cover && (
         <img
           src={post.cover}
           alt={`${post.title} cover`}
-          style={{ border: `1px solid ${PAPER.divider}` }}
-          className="mt-4 max-w-[200px] rounded-md shadow-sm"
+          style={{
+            border: `1px solid ${PAPER.divider}`,
+            maxWidth: `${post.coverWidth ?? 200}px`,
+          }}
+          className="mt-4 w-full rounded-md shadow-sm"
         />
       )}
     </article>
