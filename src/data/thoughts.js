@@ -44,7 +44,7 @@ export const posts = [
     title: "Cuộn tròn trong chăn",
     topic: "Music",
     content:
-      "The Marías - Heavy.\n\nSome nights the only plan is to disappear under the blanket and let the bridge of this song loop for a while. It's the kind of heavy that doesn't want fixing, just company — something to sit with instead of sleep through.\n\nDuring busy winter days, sometimes I just wish I could curl up under the comforter, forget about the outside world, and roll like a burrito 🌯",
+      "During busy winter days, sometimes I just wish I could curl up under the comforter, forget about the outside world, and roll like a burrito 🌯",
     music: { url: "https://open.spotify.com/track/1ShRHPAiiIrh0arZbSFmx1", start: 95 },
     status: "published",
     createdAt: "2026-08-15T00:00:00Z",
