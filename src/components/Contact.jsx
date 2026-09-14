@@ -13,13 +13,13 @@ const links = [
   {
     icon: FiLinkedin,
     href: content.contact.linkedin,
-    label: "LinkedIn",
+    label: `@${content.contact.linkedin.split("/").filter(Boolean).pop()}`,
     color: "hover:text-accent-mint",
   },
   {
     icon: FiGithub,
     href: content.contact.github,
-    label: "GitHub",
+    label: `@${content.contact.github.split("/").filter(Boolean).pop()}`,
     color: "hover:text-accent-yellow",
   },
 ];
@@ -57,7 +57,7 @@ export default function Contact() {
       >
         {links.map(({ icon: Icon, href, label, color }) => (
           <motion.a
-            key={label}
+            key={href}
             href={href}
             target={href.startsWith("mailto") ? undefined : "_blank"}
             rel="noopener noreferrer"

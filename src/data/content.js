@@ -27,12 +27,12 @@ const content = {
         date: "May 2026 — September 2026",
         tag: "current",
         bullets: [
-          "Storage Platform team — petabyte-scale, multi-cloud storage infrastructure powering Snowflake's data platform",
-          "Eliminated 3.8B annual cloud-storage LIST calls, achieving $3.4M yearly net savings, by replacing exhaustive file scans with AWS S3, Azure, and GCP inventory snapshot-based detection using scheduled tasks and stored procedures",
-          "Flagged 59% more temp files and 6.2% more result files than the legacy scanners in a 7-day production comparison (projected 770TB/year additional reclaimable storage), verified by a zero-missed-file parity gate",
+          "Owned the first inventory-based leaked file cleanup system for Snowflake's petabyte-scale, multi-cloud storage platform",
+          "Migrated the prefix deletion service to an asynchronous batch client, reducing FoundationDB KV store load and raising deletion throughput",
+          "Eliminated 6.8B daily cloud-storage LIST calls, achieving $7.84M yearly net savings, by replacing exhaustive prefix scans with AWS S3 and Azure Blob inventory snapshot-based detection using daily scheduled tasks and stored procedures",
+          "Engineered the deletion pipeline with 3-tiered rate limits, bounding per-partition request rate and memory footprint, enabling peak throughput up to 5PB/day across all deployments",
           "Parallelized the deletion enqueue pipeline with multithreading, improving runtime by 97% from 60 hours to 2 hours",
-          "Enhanced system health observability with queryable metrics and stuck-deletion alerting for 95M daily candidates",
-          "Migrated a petabyte-scale deletion service to an asynchronous batch deletion client, fixing a silent-timeout leak of undeleted files",
+          "Built Grafana dashboards tracking 20+ metrics and stuck-deletion alerts, monitoring system health for 100M+ daily candidates",
         ],
       },
       {
@@ -42,7 +42,7 @@ const content = {
         tag: "rehire",
         bullets: [
           "ToastIQ team, a multi-agent AI assistant that provides business insights and recommendations to 100,000+ restaurants across Toast's platform",
-          "Architected LLM memory management capabilities by implementing MCP tool and server with GraphQL integration for reliable memory CRUD operations, processing 1,000+ hourly preference updates",
+          "Delivered LLM memory management capabilities by implementing MCP tools and server with GraphQL integration for reliable memory CRUD operations, processing 1,000+ hourly preference updates",
           "Engineered multimodal capabilities with a file upload endpoint in 2-day hackathon supporting 5+ formats, enabling restaurant owners to analyze textual and visual documents for the first time",
         ],
       },
@@ -51,8 +51,8 @@ const content = {
         role: "Software Engineer Intern",
         date: "June 2025 — August 2025",
         bullets: [
-          "Built prompt fetching and management service integrating Langfuse, reducing iteration time by 98% from 2 hours to 2 minutes and enabling 50+ team members to test LLM prompts efficiently",
-          "Optimized customer chat experience by implementing AI-powered conversation summarization with Gemini 2.5 Flash API, processing 1000+ daily conversations while reducing chat history UI clutter by 80%",
+          "Built prompt fetching and management service integrating Langfuse, reducing prompt iteration time by 98% from 2 hours to 2 minutes and enabling 50+ team members to test LLM prompts efficiently",
+          "Optimized customer chat experience by implementing AI-powered conversation summarization with Gemini 2.5 Flash API, processing 10,000+ daily conversations while reducing chat history UI clutter",
           "Deployed scalable caching infrastructure with Terraform and Redis, improving prompt retrieval latency by 70% and maintaining 99.91% availability across high-traffic production environments",
           "Developed automated evaluation infrastructure with Langfuse and GitHub Actions CI/CD integration, enabling rapid testing of MCP tool implementations and prompt variations while validating LLM output quality across 30+ datasets",
         ],
