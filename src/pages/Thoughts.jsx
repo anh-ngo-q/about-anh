@@ -151,6 +151,16 @@ function PostListItem({ post, isActive, onClick }) {
   );
 }
 
+// Post content is plain text, except for _underscored_ runs, which render as
+// italics. Underscores that don't pair up on one line are left as typed.
+function renderEmphasis(content) {
+  return content
+    .split(/(_[^_\n]+_)/g)
+    .map((part, i) =>
+      /^_[^_\n]+_$/.test(part) ? <em key={i}>{part.slice(1, -1)}</em> : part
+    );
+}
+
 function PostCard({ post }) {
   const date = new Date(post.createdAt).toLocaleDateString("en-US", {
     year: "numeric",
@@ -194,7 +204,7 @@ function PostCard({ post }) {
         style={{ color: "#5c3d2e", lineHeight: "1.85" }}
         className="text-sm whitespace-pre-line mb-4"
       >
-        {post.content}
+        {renderEmphasis(post.content)}
       </p>
 
       {/* Spotify player */}
